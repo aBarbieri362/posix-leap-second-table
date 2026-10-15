@@ -30,3 +30,10 @@ The awkward edge
 ---------------
 
 The file uses NTP timestamps (seconds since 1900-01-01 UTC). We subtract the constant `2208988800` to convert them to Unix timestamps. This constant is an integer exactly 70 years long in SI seconds; treating it as fixed is the one deliberate interpretation in the library. If a caller feeds timestamps that land inside an actual leap second (e.g. `2016-12-31T23:59:60Z`), the result is the offset in force at the start of that second. We do not attempt to resolve the sub-second ambiguity.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
