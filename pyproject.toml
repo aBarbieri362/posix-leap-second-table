@@ -1,6 +1,6 @@
 [project]
 name = "posix-leap-second-table"
-version = "0.1.1"
+version = "0.1.2"
 description = "Parses and serves the IETF leap-seconds.list file, providing TAI-UTC offset lookups by Unix timestamp."
 requires-python = ">=3.10"
 dependencies = []
